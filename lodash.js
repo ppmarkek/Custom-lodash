@@ -6,6 +6,9 @@ class ImdenverLodash {
     newArr.push(arrx, arry);
     return newArr;
   }
+  compact(arr){
+    return arr.filter((x) => typeof x === 'number' && x !== 0);
+  }
 }
 
 const lod = new ImdenverLodash;
