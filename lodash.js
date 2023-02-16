@@ -30,6 +30,10 @@ class ImdenverLodash {
       return newMap;
      }
   }
+  take(arr, value){
+    value === undefined ? value = 1 : 0;
+    return arr.filter((x, length) => length+1 <= value);
+  }
 }
 
 const lod = new ImdenverLodash;
@@ -39,7 +43,7 @@ var users = [
   { 'user': 'pebbles', 'active': true }
   ];
    
-  lod.dropWhile(users, { 'user': 'barney', 'active': false });
+  lod.take([1, 2, 3], 0);
 
 /*module.exports = {
   chunk: _.chunk
