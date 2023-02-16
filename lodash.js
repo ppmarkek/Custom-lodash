@@ -13,9 +13,33 @@ class ImdenverLodash {
     x === undefined ? x = 1 : 0;
     return arr.slice(x);
   }
+  dropWhile(arr, fun){
+     if(typeof fun === 'function'){
+      //return arr.map((x) => console.log(x === fun));
+     } else if(typeof fun === 'object' && !Array.isArray(fun)){
+      const newMap = [];
+      arr.map((x) => x.user !== fun.user || x.active !== fun.active ? newMap.push(x.user) : 0);
+      return newMap;
+     } else if(typeof fun === 'object' && Array.isArray(fun)){
+      const newMap = [];
+      arr.some((x) => fun[0] === 'active' && x.active !== fun[1] ? newMap.push(x.user) : newMap.push(x.active));
+      return newMap;
+     } else if(typeof fun === 'string'){
+      const newMap = [];
+      arr.map((x) => fun === 'active' ? newMap.push(x.user) : newMap.push(x.active));
+      return newMap;
+     }
+  }
 }
 
 const lod = new ImdenverLodash;
+var users = [
+  { 'user': 'barney',  'active': false },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'pebbles', 'active': true }
+  ];
+   
+  lod.dropWhile(users, { 'user': 'barney', 'active': false });
 
 /*module.exports = {
   chunk: _.chunk
