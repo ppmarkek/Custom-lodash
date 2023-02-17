@@ -15,7 +15,9 @@ class ImdenverLodash {
   }
   dropWhile(arr, fun){
      if(typeof fun === 'function'){
-      //return arr.map((x) => console.log(x === fun));
+      const newMap = [];
+      arr.filter((x) => !fun(x) ? newMap.push(x.user) : 0);
+      return newMap;
      } else if(typeof fun === 'object' && !Array.isArray(fun)){
       const newMap = [];
       arr.map((x) => x.user !== fun.user || x.active !== fun.active ? newMap.push(x.user) : 0);
@@ -43,7 +45,7 @@ var users = [
   { 'user': 'pebbles', 'active': true }
   ];
    
-  lod.take([1, 2, 3], 0);
+  lod.dropWhile(users, function(o) { return !o.active; });
 
 /*module.exports = {
   chunk: _.chunk
