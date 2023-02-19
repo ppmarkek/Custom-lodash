@@ -120,16 +120,17 @@ class ImdenverLodash {
       return typeof value === 'function' ? Object.values(arr).map((x) => value(x)) : 0;
     }
   }
+  zip(...arr){
+    const newArr = [], Arr1 = [], Arr2 = [];
+    arr.map((x) => x.map((y, lenght) => lenght % 2 === 0 ? Arr1.push(y) : Arr2.push(y)));
+    newArr.push(Arr1, Arr2);
+    return newArr;
+  }
 }
 
 const lod = new ImdenverLodash;
-   
-var users = [
-  { 'user': 'barney' },
-  { 'user': 'fred' } 
-];
  
-lod.map(users, 'user');
+lod.zip(['a', 'b'], [1, 2], [true, false]);
 
 
 
