@@ -104,15 +104,20 @@ class ImdenverLodash {
       return newMap;
      }
   }
+  includes(arr, value){
+    if(Array.isArray(arr)){
+      return arr.some((x) => x === value);
+    } else if(typeof arr === 'object' && !Array.isArray(arr)){
+      return Object.keys(arr).some((x) => x === value) === true ? Object.keys(arr).some((x) => x === value) : Object.values(arr).some((x) => x === value);
+    } else if(typeof arr === 'string'){
+      return arr.includes(value);
+    }
+  }
 }
 
 const lod = new ImdenverLodash;
-var users = [
-  { 'user': 'barney', 'age': 36, 'active': true },
-  { 'user': 'fred',   'age': 40, 'active': false }
-];
    
-lod.filter(users, 'active');
+lod.includes('abcd', 'bc');
 
 
 
