@@ -113,11 +113,23 @@ class ImdenverLodash {
       return arr.includes(value);
     }
   }
+  map(arr, value){
+    if(Array.isArray(arr)){
+      return typeof value === 'function' ? arr.map((x) => value(x)) : arr.map((x) => x[value]);
+    } else if(typeof arr === 'object' && !Array.isArray(arr)){
+      return typeof value === 'function' ? Object.values(arr).map((x) => value(x)) : 0;
+    }
+  }
 }
 
 const lod = new ImdenverLodash;
    
-lod.includes('abcd', 'bc');
+var users = [
+  { 'user': 'barney' },
+  { 'user': 'fred' } 
+];
+ 
+lod.map(users, 'user');
 
 
 
