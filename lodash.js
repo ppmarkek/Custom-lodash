@@ -153,13 +153,22 @@ class ImdenverLodash {
     Object.keys(obj).filter((x) => paths.includes(x) ? newObj[x] = obj[x] : 0);
     return newObj;
   }
+  pickBy(obj, predicate){
+    const newObj = {};
+    Object.keys(obj).map((x) => {
+      if (predicate(obj[x])) {
+        newObj[x] = obj[x];
+      }
+    });
+  return newObj;
+  }
 }
 
 const lod = new ImdenverLodash;
 
-var object = { 'a': 1, 'b': '2', 'c': 3 };
+const myObj = { a: 1, b: 2, c: 3, d: 4 };
  
-lod.pick(object, ['a', 'c'])
+lod.pickBy(myObj, (value) => value % 2 === 0);
 
 /*module.exports = {
   chunk: _.chunk
