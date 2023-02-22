@@ -140,20 +140,18 @@ class ImdenverLodash {
     });
     return obj;
   }
+  omit(obj, paths){
+    const newObj = {};
+    Object.keys(obj).filter((x) => !paths.includes(x) ? newObj[x] = obj[x] : 0);
+    return newObj;
+  }
 }
+
 const lod = new ImdenverLodash;
 
-var object = {
-  'a': [{ 'b': 2 }, { 'd': 4 }]
-};
+var object = { 'a': 1, 'b': '2', 'c': 3 };
  
-var other = {
-  'a': [{ 'c': 3 }, { 'e': 5 }]
-};
-
-lod.merge(object, other);
-
-
+lod.omit(object, ['a', 'c']);
 
 /*module.exports = {
   chunk: _.chunk
