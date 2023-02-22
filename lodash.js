@@ -145,13 +145,21 @@ class ImdenverLodash {
     Object.keys(obj).filter((x) => !paths.includes(x) ? newObj[x] = obj[x] : 0);
     return newObj;
   }
+  omitBy(object, fun){
+    //
+  }
+  pick(obj, paths){
+    const newObj = {};
+    Object.keys(obj).filter((x) => paths.includes(x) ? newObj[x] = obj[x] : 0);
+    return newObj;
+  }
 }
 
 const lod = new ImdenverLodash;
 
 var object = { 'a': 1, 'b': '2', 'c': 3 };
  
-lod.omit(object, ['a', 'c']);
+lod.pick(object, ['a', 'c'])
 
 /*module.exports = {
   chunk: _.chunk
