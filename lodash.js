@@ -145,8 +145,10 @@ class ImdenverLodash {
     Object.keys(obj).filter((x) => !paths.includes(x) ? newObj[x] = obj[x] : 0);
     return newObj;
   }
-  omitBy(object, fun){
-    //
+  omitBy(obj, fun){
+    const newObj = {};
+    Object.values(obj).map((x) => fun(obj[x]) ? newObj[x] = obj[x] : 0);
+    return newObj;
   }
   pick(obj, paths){
     const newObj = {};
@@ -155,12 +157,8 @@ class ImdenverLodash {
   }
   pickBy(obj, predicate){
     const newObj = {};
-    Object.keys(obj).map((x) => {
-      if (predicate(obj[x])) {
-        newObj[x] = obj[x];
-      }
-    });
-  return newObj;
+    Object.keys(obj).map((x) => predicate(obj[x]) ? newObj[x] = obj[x] : 0);
+    return newObj;
   }
 }
 
