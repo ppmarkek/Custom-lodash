@@ -126,11 +126,32 @@ class ImdenverLodash {
     newArr.push(Arr1, Arr2);
     return newArr;
   }
+  merge(obj, ...sources) {
+    sources.map((x) => {
+      for (const key in x) {
+        if (x.hasOwnProperty(key)) {
+          if (typeof obj[key] === 'object' && typeof x[key] === 'object') {
+            merge(obj[key], x[key]);
+          } else {
+            obj[key] = x[key];
+          }
+        }
+      }
+    });
+    return obj;
+  }
 }
-
 const lod = new ImdenverLodash;
+
+var object = {
+  'a': [{ 'b': 2 }, { 'd': 4 }]
+};
  
-lod.zip(['a', 'b'], [1, 2], [true, false]);
+var other = {
+  'a': [{ 'c': 3 }, { 'e': 5 }]
+};
+
+lod.merge(object, other);
 
 
 
