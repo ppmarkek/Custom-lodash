@@ -160,13 +160,21 @@ class ImdenverLodash {
     Object.keys(obj).map((x) => predicate(obj[x]) ? newObj[x] = obj[x] : 0);
     return newObj;
   }
+  toPairs(obj) {
+    return Object.entries(obj);
+  }
 }
 
 const lod = new ImdenverLodash;
 
-const myObj = { a: 1, b: 2, c: 3, d: 4 };
+function Foo() {
+  this.a = 1;
+  this.b = 2;
+}
  
-lod.pickBy(myObj, (value) => value % 2 === 0);
+Foo.prototype.c = 3;
+ 
+lod.toPairs(new Foo);
 
 /*module.exports = {
   chunk: _.chunk
