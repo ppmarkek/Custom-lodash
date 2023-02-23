@@ -1,4 +1,4 @@
-class ImdenverLodash {
+export class ImdenverLodash {
   chunk(arr, x){
     const newArr = [], arrx = [], arry = [];
 
@@ -164,18 +164,3 @@ class ImdenverLodash {
     return Object.entries(obj);
   }
 }
-
-const lod = new ImdenverLodash;
-
-function Foo() {
-  this.a = 1;
-  this.b = 2;
-}
- 
-Foo.prototype.c = 3;
- 
-lod.toPairs(new Foo);
-
-/*module.exports = {
-  chunk: _.chunk
-}*/
