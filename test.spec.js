@@ -378,3 +378,17 @@ describe('pickBy', () => {
     expect(result).toEqual({ 'a': 1, 'c': 3 });
   });
 });
+
+describe('toPairs', () => {
+  it('Creates an array of own enumerable string keyed-value pairs for object which can be consumed by _.fromPairs.', () => {
+    function Foo() {
+      this.a = 1;
+      this.b = 2;
+    }
+    Foo.prototype.c = 3;
+
+    const result = Imd.toPairs(new Foo);
+
+    expect(result).toEqual([['a', 1], ['b', 2]]);
+  });
+});
