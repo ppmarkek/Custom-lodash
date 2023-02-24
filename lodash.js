@@ -149,10 +149,12 @@ export class ImdenverLodash {
     Object.keys(obj).filter((x) => !paths.includes(x) ? newObj[x] = obj[x] : 0);
     return newObj;
   }
-  omitBy(obj, fun){
-    const newObj = {};
-    Object.values(obj).map((x) => fun(obj[x]) ? newObj[x] = obj[x] : 0);
-    return newObj;
+  omitBy(obj, predicate) {
+    const result = {};
+    Object.keys(obj).map((x) => {if (Object.prototype.hasOwnProperty.call(obj, x)) {
+      !predicate(obj[x], x) ? result[x] = obj[x] : 0;
+    }});
+    return result;
   }
   pick(obj, paths){
     const newObj = {};
@@ -170,11 +172,5 @@ export class ImdenverLodash {
 }
 
 const Imd = new ImdenverLodash;
-var object = {
-  'a': [{ 'b': 2 }, { 'd': 4 }]
-};
- 
-var other = {
-  'a': [{ 'c': 3 }, { 'e': 5 }]
-};
-Imd.merge(object, other)
+var object = { 'a': 1, 'b': '2', 'c': 3 };
+Imd.omitBy(object, function(value){ return typeof value === 'number' && isFinite(value) } )

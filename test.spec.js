@@ -338,11 +338,21 @@ describe('merge', () => {
 });
 
 describe('omit', () => {
-  it('Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.', () => {
+  it('The opposite of _.pick; this method creates an object composed of the own and inherited enumerable property paths of object that are not omitted.', () => {
     var object = { 'a': 1, 'b': '2', 'c': 3 };
     const arr = ['a', 'c'];
 
     const result = Imd.omit(object, arr);
+
+    expect(result).toEqual({ 'b': '2' });
+  });
+});
+
+describe('omitBy', () => {
+  it('The opposite of _.pickBy; this method creates an object composed of the own and inherited enumerable string keyed properties of object that predicate doesn`t return truthy for.', () => {
+    var object = { 'a': 1, 'b': '2', 'c': 3 };
+
+    const result = Imd.omitBy(object, function(value){ return typeof value === 'number' && isFinite(value) });
 
     expect(result).toEqual({ 'b': '2' });
   });
