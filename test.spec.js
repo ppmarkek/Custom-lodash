@@ -150,3 +150,50 @@ describe('take', () => {
     expect(result).toEqual([]);
   });
 });
+
+describe('filter', () => {
+  it('Iterates over elements of collection, returning an array of all elements predicate returns truthy for.', () => {
+    var users = [
+      { 'user': 'barney', 'age': 36, 'active': true },
+      { 'user': 'fred',   'age': 40, 'active': false }
+    ];
+    const value = function(o) { return !o.active; };
+
+    const result = Imd.filter(users, value);
+
+    expect(result).toEqual(['fred']);
+  });
+  it('Iterates over elements of collection, returning an array of all elements predicate returns truthy for.', () => {
+    var users = [
+      { 'user': 'barney', 'age': 36, 'active': true },
+      { 'user': 'fred',   'age': 40, 'active': false }
+    ];
+    const value = { 'age': 36, 'active': true };
+
+    const result = Imd.filter(users, value);
+
+    expect(result).toEqual(['barney']);
+  });
+  it('Iterates over elements of collection, returning an array of all elements predicate returns truthy for.', () => {
+    var users = [
+      { 'user': 'barney', 'age': 36, 'active': true },
+      { 'user': 'fred',   'age': 40, 'active': false }
+    ];
+    const value = ['active', false];
+
+    const result = Imd.filter(users, value);
+
+    expect(result).toEqual(['fred']);
+  });
+  it('Iterates over elements of collection, returning an array of all elements predicate returns truthy for.', () => {
+    var users = [
+      { 'user': 'barney', 'age': 36, 'active': true },
+      { 'user': 'fred',   'age': 40, 'active': false }
+    ];
+    const value = 'active';
+
+    const result = Imd.filter(users, value);
+
+    expect(result).toEqual(['barney']);
+  });
+});
