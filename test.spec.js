@@ -327,7 +327,6 @@ describe('merge', () => {
     var object = {
       'a': [{ 'b': 2 }, { 'd': 4 }]
     };
-     
     var other = {
       'a': [{ 'c': 3 }, { 'e': 5 }]
     };
@@ -335,5 +334,16 @@ describe('merge', () => {
     const result = Imd.merge(object, other);
 
     expect(result).toEqual({ 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] });
+  });
+});
+
+describe('omit', () => {
+  it('Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.', () => {
+    var object = { 'a': 1, 'b': '2', 'c': 3 };
+    const arr = ['a', 'c'];
+
+    const result = Imd.omit(object, arr);
+
+    expect(result).toEqual({ 'b': '2' });
   });
 });
