@@ -309,3 +309,15 @@ describe('map', () => {
     expect(result).toEqual(['barney', 'fred']);
   });
 });
+
+describe('zip', () => {
+  it('Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.', () => {
+    const arr1 = ['a', 'b'];
+    const arr2 = [1, 2];
+    const arr3 = [true, false];
+
+    const result = Imd.zip(arr1, arr2, arr3);
+
+    expect(result).toEqual([['a', 1, true], ['b', 2, false]]);
+  });
+});
