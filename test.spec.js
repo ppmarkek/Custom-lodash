@@ -372,9 +372,8 @@ describe('pick', () => {
 describe('pickBy', () => {
   it('Creates an object composed of the object properties predicate returns truthy for.', () => {
     var object = { 'a': 1, 'b': '2', 'c': 3 };
-    const arr = ['a', 'c']; 
 
-    const result = Imd.pickBy(object, ['a', 'c']);
+    const result = Imd.pickBy(object, function(value){ return typeof value === 'number' && isFinite(value) });
 
     expect(result).toEqual({ 'a': 1, 'c': 3 });
   });
