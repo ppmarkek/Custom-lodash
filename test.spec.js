@@ -275,3 +275,37 @@ describe('includes', () => {
     expect(result).toEqual(true);
   });
 });
+
+describe('map', () => {
+  it('Creates an array of values by running each element in collection thru iteratee.', () => {
+    const arr = [4, 8];
+    function square(n) {
+      return n * n;
+    };
+
+    const result = Imd.map(arr, square);
+
+    expect(result).toEqual([16, 64]);
+  });
+  it('Creates an array of values by running each element in collection thru iteratee.', () => {
+    const arr = { 'a': 4, 'b': 8 };
+    function square(n) {
+      return n * n;
+    };
+
+    const result = Imd.map(arr, square);
+
+    expect(result).toEqual([16, 64]);
+  });
+  it('Creates an array of values by running each element in collection thru iteratee.', () => {
+    const arr = 'user';
+    var users = [
+      { 'user': 'barney' },
+      { 'user': 'fred' }
+    ];
+
+    const result = Imd.map(users, arr);
+
+    expect(result).toEqual(['barney', 'fred']);
+  });
+});
