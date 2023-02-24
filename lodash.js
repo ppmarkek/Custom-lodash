@@ -126,19 +126,23 @@ export class ImdenverLodash {
     newArr.push(Arr1, Arr2);
     return newArr;
   }
-  merge(obj, ...sources) {
-    sources.map((x) => {
-      for (const key in x) {
-        if (x.hasOwnProperty(key)) {
-          if (typeof obj[key] === 'object' && typeof x[key] === 'object') {
-            merge(obj[key], x[key]);
-          } else {
-            obj[key] = x[key];
+  merge(object, ...sources) {
+    sources.forEach((source) => {
+      if (source != null) {
+        Object.keys(source).forEach((key) => {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            const sourceValue = source[key];
+            const destValue = object[key];
+            if (destValue != null && typeof destValue === 'object' && typeof sourceValue === 'object') {
+              object[key] = this.merge(destValue, sourceValue);
+            } else if (sourceValue !== undefined) {
+              object[key] = sourceValue;
+            }
           }
-        }
+        });
       }
     });
-    return obj;
+    return object;
   }
   omit(obj, paths){
     const newObj = {};
@@ -166,9 +170,11 @@ export class ImdenverLodash {
 }
 
 const Imd = new ImdenverLodash;
-var users = [
-  { 'user': 'barney',  'age': 36, 'active': true },
-  { 'user': 'fred',    'age': 40, 'active': false },
-  { 'user': 'pebbles', 'age': 1,  'active': true }
-];
-Imd.find(users, 'active')
+var object = {
+  'a': [{ 'b': 2 }, { 'd': 4 }]
+};
+ 
+var other = {
+  'a': [{ 'c': 3 }, { 'e': 5 }]
+};
+Imd.merge(object, other)

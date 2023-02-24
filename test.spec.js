@@ -321,3 +321,19 @@ describe('zip', () => {
     expect(result).toEqual([['a', 1, true], ['b', 2, false]]);
   });
 });
+
+describe('merge', () => {
+  it('This method is like _.assign except that it recursively merges own and inherited enumerable string keyed properties of source objects into the destination object.', () => {
+    var object = {
+      'a': [{ 'b': 2 }, { 'd': 4 }]
+    };
+     
+    var other = {
+      'a': [{ 'c': 3 }, { 'e': 5 }]
+    };
+
+    const result = Imd.merge(object, other);
+
+    expect(result).toEqual({ 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] });
+  });
+});
