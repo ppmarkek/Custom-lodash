@@ -31,3 +31,38 @@ describe('compact', () => {
     expect(result).toEqual([1, 2, 3]);
   });
 });
+
+describe('drop', () => {
+  it('Creates a slice of array with n elements dropped from the beginning.', () => {
+    const arr = [1, 2, 3];
+
+    const result = Imd.drop(arr);
+
+    expect(result).toEqual([2, 3]);
+  });
+  it('Creates a slice of array with n elements dropped from the beginning.', () => {
+    const arr = [1, 2, 3];
+    const number = 2;
+
+    const result = Imd.drop(arr, number);
+
+    expect(result).toEqual([3]);
+  });
+  it('Creates a slice of array with n elements dropped from the beginning.', () => {
+    const arr = [1, 2, 3];
+    const number = 5;
+
+    const result = Imd.drop(arr, number);
+
+    expect(result).toEqual([]);
+  });
+  it('Creates a slice of array with n elements dropped from the beginning.', () => {
+    const arr = [1, 2, 3];
+    const number = 0;
+
+    const result = Imd.drop(arr, number);
+
+    expect(result).toEqual([1, 2, 3]);
+  });
+});
+
