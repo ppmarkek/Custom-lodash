@@ -357,3 +357,15 @@ describe('omitBy', () => {
     expect(result).toEqual({ 'b': '2' });
   });
 });
+
+describe('pick', () => {
+  it('Creates an object composed of the picked object properties.', () => {
+    var object = { 'a': 1, 'b': '2', 'c': 3 };
+    const arr = ['a', 'c']; 
+
+    const result = Imd.pick(object, ['a', 'c']);
+
+    expect(result).toEqual({ 'a': 1, 'c': 3 });
+  });
+});
+
