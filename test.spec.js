@@ -66,3 +66,53 @@ describe('drop', () => {
   });
 });
 
+describe('dropWhile', () => {
+  it('Creates a slice of array excluding elements dropped from the beginning.', () => {
+    var users = [
+      { 'user': 'barney',  'active': false },
+      { 'user': 'fred',    'active': false },
+      { 'user': 'pebbles', 'active': true }
+    ];
+    const value = function(o) { return !o.active; };
+
+    const result = Imd.dropWhile(users, value);
+
+    expect(result).toEqual(['pebbles']);
+  });
+  it('Creates a slice of array excluding elements dropped from the beginning.', () => {
+    var users = [
+      { 'user': 'barney',  'active': false },
+      { 'user': 'fred',    'active': false },
+      { 'user': 'pebbles', 'active': true }
+    ];
+    const value = { 'user': 'barney', 'active': false };
+
+    const result = Imd.dropWhile(users, value);
+
+    expect(result).toEqual(['fred', 'pebbles']);
+  });
+  it('Creates a slice of array excluding elements dropped from the beginning.', () => {
+    var users = [
+      { 'user': 'barney',  'active': false },
+      { 'user': 'fred',    'active': false },
+      { 'user': 'pebbles', 'active': true }
+    ];
+    const value = ['active', false];
+
+    const result = Imd.dropWhile(users, value);
+
+    expect(result).toEqual(['pebbles']);
+  });
+  it('Creates a slice of array excluding elements dropped from the beginning.', () => {
+    var users = [
+      { 'user': 'barney',  'active': false },
+      { 'user': 'fred',    'active': false },
+      { 'user': 'pebbles', 'active': true }
+    ];
+    const value = 'active';
+
+    const result = Imd.dropWhile(users, value);
+
+    expect(result).toEqual(['barney', 'fred', 'pebbles']);
+  });
+});
