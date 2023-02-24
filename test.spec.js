@@ -248,3 +248,30 @@ describe('find', () => {
     expect(result).toEqual('barney');
   });
 });
+
+describe('includes', () => {
+  it('Creates an array of elements split into groups the length of size.', () => {
+    const arr = [1, 2, 3];
+    const value = 1;
+
+    const result = Imd.includes(arr, value);
+
+    expect(result).toEqual(true);
+  });
+  it('Creates an array of elements split into groups the length of size.', () => {
+    const arr = { 'a': 1, 'b': 2 };
+    const value = 1;
+
+    const result = Imd.includes(arr, value);
+
+    expect(result).toEqual(true);
+  });
+  it('Creates an array of elements split into groups the length of size.', () => {
+    const arr = 'abcd';
+    const value = 'bc';
+
+    const result = Imd.includes(arr, value);
+
+    expect(result).toEqual(true);
+  });
+});
