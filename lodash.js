@@ -78,8 +78,8 @@ export class ImdenverLodash {
   find(arr, fun){
     if(typeof fun === 'function'){
       const newMap = [];
-      arr.filter((x) => fun(x) ? newMap.push(x.user) : 0);
-      return newMap;
+      arr.some((x) => fun(x) ? newMap.push(x.user) : 0);
+      return newMap.join('');
      } else if(typeof fun === 'object' && !Array.isArray(fun)){
       const newMap = [];
       let key1;
@@ -89,19 +89,19 @@ export class ImdenverLodash {
       arr.some((x) => Object.keys(x).map((y, lenght) => y === funKeys[0] ? key1 = lenght : 0));
       arr.some((x) => Object.keys(x).map((y, lenght) => y === funKeys[1] ? key2 = lenght : 0));
       arr.some((x) => Object.keys(x)[key1] === funKeys[0] && Object.values(x)[key1] === funValue[0] && Object.keys(x)[key2] === funKeys[1] && Object.values(x)[key2] === funValue[1] ? newMap.push(x.user) : 0);
-      return newMap;
+      return newMap.join('');
      } else if(typeof fun === 'object' && Array.isArray(fun)){
       const newMap = [];
       let key;
       arr.some((x) => Object.keys(x).map((y, lenght) => y === fun[0] ? key = lenght : 0));
       arr.some((x) => Object.keys(x)[key] === fun[0] && Object.values(x)[key] === fun[1] ? newMap.push(x.user) : 0);
-      return newMap;
+      return newMap.join('');
      } else if(typeof fun === 'string'){
       const newMap = [];
       let key;
       arr.some((x) => Object.keys(x).map((y, lenght) => y === fun ? key = lenght : 0));
       arr.some((x) => Object.keys(x)[key] === fun ? newMap.push(x.user) : 0);
-      return newMap;
+      return newMap.join('');
      }
   }
   includes(arr, value){
@@ -164,3 +164,11 @@ export class ImdenverLodash {
     return Object.entries(obj);
   }
 }
+
+const Imd = new ImdenverLodash;
+var users = [
+  { 'user': 'barney',  'age': 36, 'active': true },
+  { 'user': 'fred',    'age': 40, 'active': false },
+  { 'user': 'pebbles', 'age': 1,  'active': true }
+];
+Imd.find(users, 'active')
