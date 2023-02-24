@@ -37,8 +37,8 @@ export class ImdenverLodash {
      } else if(typeof fun === 'string'){
       const newMap = [];
       let key;
-      arr.some((x) => Object.keys(x).map((y, lenght) => y === fun ? key = lenght : 0));
-      arr.some((x) => Object.keys(x)[key] === fun ? newMap.push(x.user) : 0);
+      arr.map((x) => Object.keys(x).map((y, lenght) => y === fun ? key = lenght : 0));
+      arr.map((x) => Object.keys(x)[key] === fun ? newMap.push(x.user) : 0);
       return newMap;
      }
   }
