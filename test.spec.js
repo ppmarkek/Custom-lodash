@@ -116,3 +116,37 @@ describe('dropWhile', () => {
     expect(result).toEqual(['barney', 'fred', 'pebbles']);
   });
 });
+
+describe('take', () => {
+  it('Creates a slice of array with n elements taken from the beginning.', () => {
+    const arr = [1, 2, 3];
+
+    const result = Imd.take(arr);
+
+    expect(result).toEqual([1]);
+  });
+  it('Creates a slice of array with n elements taken from the beginning.', () => {
+    const arr = [1, 2, 3];
+    const value = 2;
+
+    const result = Imd.take(arr, value);
+
+    expect(result).toEqual([1, 2]);
+  });
+  it('Creates a slice of array with n elements taken from the beginning.', () => {
+    const arr = [1, 2, 3];
+    const value = 5;
+
+    const result = Imd.take(arr, value);
+
+    expect(result).toEqual([1, 2, 3]);
+  });
+  it('Creates a slice of array with n elements taken from the beginning.', () => {
+    const arr = [1, 2, 3];
+    const value = 0;
+
+    const result = Imd.take(arr, value);
+
+    expect(result).toEqual([]);
+  });
+});
